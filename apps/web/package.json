@@ -1,0 +1,20 @@
+{
+  "name": "pixel-tavern-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate-ambient-assets": "node scripts/generate-ambient-assets.mjs",
+    "prepare-assets": "npm run generate-ambient-assets && node scripts/prepare-assets.mjs",
+    "dev": "npm run prepare-assets && vite",
+    "build": "npm run prepare-assets && tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "phaser": "^3.80.1"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.0",
+    "typescript": "^5.4.0",
+    "vite": "^5.4.0"
+  }
+}

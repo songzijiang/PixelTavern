@@ -1,0 +1,104 @@
+{
+  "npc_key": "老佣兵顾问",
+  "animations": {
+    "walk_back": {
+      "frames": [
+        "老佣兵顾问_walk_back_0.png",
+        "老佣兵顾问_walk_back_1.png",
+        "老佣兵顾问_walk_back_2.png",
+        "老佣兵顾问_walk_back_3.png",
+        "老佣兵顾问_walk_back_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_front": {
+      "frames": [
+        "老佣兵顾问_walk_front_0.png",
+        "老佣兵顾问_walk_front_1.png",
+        "老佣兵顾问_walk_front_2.png",
+        "老佣兵顾问_walk_front_3.png",
+        "老佣兵顾问_walk_front_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "idle": {
+      "frames": [
+        "老佣兵顾问_idle_0.png",
+        "老佣兵顾问_idle_1.png",
+        "老佣兵顾问_idle_2.png",
+        "老佣兵顾问_idle_3.png",
+        "老佣兵顾问_idle_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_left": {
+      "frames": [
+        "老佣兵顾问_walk_left_0.png",
+        "老佣兵顾问_walk_left_1.png",
+        "老佣兵顾问_walk_left_2.png",
+        "老佣兵顾问_walk_left_3.png",
+        "老佣兵顾问_walk_left_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_right": {
+      "frames": [
+        "老佣兵顾问_walk_right_0.png",
+        "老佣兵顾问_walk_right_1.png",
+        "老佣兵顾问_walk_right_2.png",
+        "老佣兵顾问_walk_right_3.png",
+        "老佣兵顾问_walk_right_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "sit": {
+      "frames": [
+        "老佣兵顾问_sit_0.png",
+        "老佣兵顾问_sit_1.png",
+        "老佣兵顾问_sit_2.png",
+        "老佣兵顾问_sit_3.png",
+        "老佣兵顾问_sit_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "special": {
+      "frames": [
+        "老佣兵顾问_special_0.png",
+        "老佣兵顾问_special_1.png",
+        "老佣兵顾问_special_2.png",
+        "老佣兵顾问_special_3.png",
+        "老佣兵顾问_special_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    },
+    "stand": {
+      "frames": [
+        "老佣兵顾问_stand_0.png",
+        "老佣兵顾问_stand_1.png",
+        "老佣兵顾问_stand_2.png",
+        "老佣兵顾问_stand_3.png",
+        "老佣兵顾问_stand_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    },
+    "talk": {
+      "frames": [
+        "老佣兵顾问_talk_0.png",
+        "老佣兵顾问_talk_1.png",
+        "老佣兵顾问_talk_2.png",
+        "老佣兵顾问_talk_3.png",
+        "老佣兵顾问_talk_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    }
+  }
+}

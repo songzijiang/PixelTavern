@@ -1,0 +1,104 @@
+{
+  "npc_key": "流亡情报官",
+  "animations": {
+    "walk_back": {
+      "frames": [
+        "流亡情报官_walk_back_0.png",
+        "流亡情报官_walk_back_1.png",
+        "流亡情报官_walk_back_2.png",
+        "流亡情报官_walk_back_3.png",
+        "流亡情报官_walk_back_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_front": {
+      "frames": [
+        "流亡情报官_walk_front_0.png",
+        "流亡情报官_walk_front_1.png",
+        "流亡情报官_walk_front_2.png",
+        "流亡情报官_walk_front_3.png",
+        "流亡情报官_walk_front_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "idle": {
+      "frames": [
+        "流亡情报官_idle_0.png",
+        "流亡情报官_idle_1.png",
+        "流亡情报官_idle_2.png",
+        "流亡情报官_idle_3.png",
+        "流亡情报官_idle_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_left": {
+      "frames": [
+        "流亡情报官_walk_left_0.png",
+        "流亡情报官_walk_left_1.png",
+        "流亡情报官_walk_left_2.png",
+        "流亡情报官_walk_left_3.png",
+        "流亡情报官_walk_left_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_right": {
+      "frames": [
+        "流亡情报官_walk_right_0.png",
+        "流亡情报官_walk_right_1.png",
+        "流亡情报官_walk_right_2.png",
+        "流亡情报官_walk_right_3.png",
+        "流亡情报官_walk_right_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "sit": {
+      "frames": [
+        "流亡情报官_sit_0.png",
+        "流亡情报官_sit_1.png",
+        "流亡情报官_sit_2.png",
+        "流亡情报官_sit_3.png",
+        "流亡情报官_sit_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "special": {
+      "frames": [
+        "流亡情报官_special_0.png",
+        "流亡情报官_special_1.png",
+        "流亡情报官_special_2.png",
+        "流亡情报官_special_3.png",
+        "流亡情报官_special_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    },
+    "stand": {
+      "frames": [
+        "流亡情报官_stand_0.png",
+        "流亡情报官_stand_1.png",
+        "流亡情报官_stand_2.png",
+        "流亡情报官_stand_3.png",
+        "流亡情报官_stand_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    },
+    "talk": {
+      "frames": [
+        "流亡情报官_talk_0.png",
+        "流亡情报官_talk_1.png",
+        "流亡情报官_talk_2.png",
+        "流亡情报官_talk_3.png",
+        "流亡情报官_talk_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    }
+  }
+}

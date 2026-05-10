@@ -1,0 +1,104 @@
+{
+  "npc_key": "雾港酒保",
+  "animations": {
+    "walk_back": {
+      "frames": [
+        "雾港酒保_walk_back_0.png",
+        "雾港酒保_walk_back_1.png",
+        "雾港酒保_walk_back_2.png",
+        "雾港酒保_walk_back_3.png",
+        "雾港酒保_walk_back_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_front": {
+      "frames": [
+        "雾港酒保_walk_front_0.png",
+        "雾港酒保_walk_front_1.png",
+        "雾港酒保_walk_front_2.png",
+        "雾港酒保_walk_front_3.png",
+        "雾港酒保_walk_front_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "idle": {
+      "frames": [
+        "雾港酒保_idle_0.png",
+        "雾港酒保_idle_1.png",
+        "雾港酒保_idle_2.png",
+        "雾港酒保_idle_3.png",
+        "雾港酒保_idle_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_left": {
+      "frames": [
+        "雾港酒保_walk_left_0.png",
+        "雾港酒保_walk_left_1.png",
+        "雾港酒保_walk_left_2.png",
+        "雾港酒保_walk_left_3.png",
+        "雾港酒保_walk_left_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_right": {
+      "frames": [
+        "雾港酒保_walk_right_0.png",
+        "雾港酒保_walk_right_1.png",
+        "雾港酒保_walk_right_2.png",
+        "雾港酒保_walk_right_3.png",
+        "雾港酒保_walk_right_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "sit": {
+      "frames": [
+        "雾港酒保_sit_0.png",
+        "雾港酒保_sit_1.png",
+        "雾港酒保_sit_2.png",
+        "雾港酒保_sit_3.png",
+        "雾港酒保_sit_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "special": {
+      "frames": [
+        "雾港酒保_special_0.png",
+        "雾港酒保_special_1.png",
+        "雾港酒保_special_2.png",
+        "雾港酒保_special_3.png",
+        "雾港酒保_special_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    },
+    "stand": {
+      "frames": [
+        "雾港酒保_stand_0.png",
+        "雾港酒保_stand_1.png",
+        "雾港酒保_stand_2.png",
+        "雾港酒保_stand_3.png",
+        "雾港酒保_stand_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    },
+    "talk": {
+      "frames": [
+        "雾港酒保_talk_0.png",
+        "雾港酒保_talk_1.png",
+        "雾港酒保_talk_2.png",
+        "雾港酒保_talk_3.png",
+        "雾港酒保_talk_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    }
+  }
+}

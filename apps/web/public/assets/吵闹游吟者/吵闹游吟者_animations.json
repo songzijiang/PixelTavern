@@ -1,0 +1,104 @@
+{
+  "npc_key": "吵闹游吟者",
+  "animations": {
+    "walk_back": {
+      "frames": [
+        "吵闹游吟者_walk_back_0.png",
+        "吵闹游吟者_walk_back_1.png",
+        "吵闹游吟者_walk_back_2.png",
+        "吵闹游吟者_walk_back_3.png",
+        "吵闹游吟者_walk_back_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_front": {
+      "frames": [
+        "吵闹游吟者_walk_front_0.png",
+        "吵闹游吟者_walk_front_1.png",
+        "吵闹游吟者_walk_front_2.png",
+        "吵闹游吟者_walk_front_3.png",
+        "吵闹游吟者_walk_front_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "idle": {
+      "frames": [
+        "吵闹游吟者_idle_0.png",
+        "吵闹游吟者_idle_1.png",
+        "吵闹游吟者_idle_2.png",
+        "吵闹游吟者_idle_3.png",
+        "吵闹游吟者_idle_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_left": {
+      "frames": [
+        "吵闹游吟者_walk_left_0.png",
+        "吵闹游吟者_walk_left_1.png",
+        "吵闹游吟者_walk_left_2.png",
+        "吵闹游吟者_walk_left_3.png",
+        "吵闹游吟者_walk_left_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_right": {
+      "frames": [
+        "吵闹游吟者_walk_right_0.png",
+        "吵闹游吟者_walk_right_1.png",
+        "吵闹游吟者_walk_right_2.png",
+        "吵闹游吟者_walk_right_3.png",
+        "吵闹游吟者_walk_right_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "sit": {
+      "frames": [
+        "吵闹游吟者_sit_0.png",
+        "吵闹游吟者_sit_1.png",
+        "吵闹游吟者_sit_2.png",
+        "吵闹游吟者_sit_3.png",
+        "吵闹游吟者_sit_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "special": {
+      "frames": [
+        "吵闹游吟者_special_0.png",
+        "吵闹游吟者_special_1.png",
+        "吵闹游吟者_special_2.png",
+        "吵闹游吟者_special_3.png",
+        "吵闹游吟者_special_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    },
+    "stand": {
+      "frames": [
+        "吵闹游吟者_stand_0.png",
+        "吵闹游吟者_stand_1.png",
+        "吵闹游吟者_stand_2.png",
+        "吵闹游吟者_stand_3.png",
+        "吵闹游吟者_stand_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    },
+    "talk": {
+      "frames": [
+        "吵闹游吟者_talk_0.png",
+        "吵闹游吟者_talk_1.png",
+        "吵闹游吟者_talk_2.png",
+        "吵闹游吟者_talk_3.png",
+        "吵闹游吟者_talk_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    }
+  }
+}

@@ -1,0 +1,115 @@
+# === Claude Code / AI Agent 本地文件 ===
+.remember/
+.claude/
+AGENTS.md
+CLAUDE.md
+
+# === 密钥 & 环境变量 ===
+.env
+.env.*
+!.env.example
+
+# === Node / 前端 ===
+node_modules/
+dist/
+build/
+.next/
+.vite/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# === Python / 后端 ===
+.venv/
+.venv_windows/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# === 运行时数据（含 LLM 配置、数据库、日志） ===
+/data/
+apps/api/data/
+apps/web/data/
+run/
+output_clip/
+*.sqlite
+*.sqlite3
+*.db
+*.db-shm
+*.db-wal
+logs/
+*.log
+
+# === PyInstaller 打包产物 ===
+build/
+dist/
+*.spec
+build-venv/
+
+# === Docker / 本地覆盖 ===
+docker-compose.override.yml
+
+# === CI / GitHub ===
+.github/
+
+# === IDE / 编辑器 ===
+.idea/
+.vscode/
+*.code-workspace
+*.sublime-*
+*.swp
+*.swo
+*~
+
+# === 备份 / 临时文件 ===
+*.bak
+*.tmp
+*.old
+*.orig
+*~
+
+# === 原始素材 & 中间构建产物 ===
+/assets/
+output/
+
+# === Phaser 运行时自动生成的纹理缓存（每次运行都会变化） ===
+apps/web/public/assets/backward*/
+apps/web/public/assets/backword*/
+apps/web/public/assets/forward*/
+apps/web/public/assets/idel*/
+apps/web/public/assets/idle*/
+apps/web/public/assets/left*/
+apps/web/public/assets/right*/
+apps/web/public/assets/sit*/
+apps/web/public/assets/mask*/
+apps/web/public/assets/matter*/
+apps/web/public/assets/nineslice*/
+apps/web/public/assets/particle*/
+apps/web/public/assets/perf*/
+apps/web/public/assets/phaser*/
+apps/web/public/assets/plane*/
+apps/web/public/assets/dynamictexture*/
+apps/web/public/assets/fx*/
+
+# === 设计参考/测试截图（不要进仓库） ===
+apps/web/public/assets/playwright/
+apps/web/public/assets/imagegen-*
+apps/web/public/assets/style-*-contact.png
+
+# === 一次性/临时工具目录 ===
+.playwright-cli/
+
+# === OS 杂项 ===
+.DS_Store
+Thumbs.db
+Desktop.ini
+/deepseek_v3_tokenizer/

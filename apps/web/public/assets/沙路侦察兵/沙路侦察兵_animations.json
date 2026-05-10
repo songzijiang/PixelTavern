@@ -1,0 +1,104 @@
+{
+  "npc_key": "沙路侦察兵",
+  "animations": {
+    "walk_back": {
+      "frames": [
+        "沙路侦察兵_walk_back_0.png",
+        "沙路侦察兵_walk_back_1.png",
+        "沙路侦察兵_walk_back_2.png",
+        "沙路侦察兵_walk_back_3.png",
+        "沙路侦察兵_walk_back_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_front": {
+      "frames": [
+        "沙路侦察兵_walk_front_0.png",
+        "沙路侦察兵_walk_front_1.png",
+        "沙路侦察兵_walk_front_2.png",
+        "沙路侦察兵_walk_front_3.png",
+        "沙路侦察兵_walk_front_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "idle": {
+      "frames": [
+        "沙路侦察兵_idle_0.png",
+        "沙路侦察兵_idle_1.png",
+        "沙路侦察兵_idle_2.png",
+        "沙路侦察兵_idle_3.png",
+        "沙路侦察兵_idle_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_left": {
+      "frames": [
+        "沙路侦察兵_walk_left_0.png",
+        "沙路侦察兵_walk_left_1.png",
+        "沙路侦察兵_walk_left_2.png",
+        "沙路侦察兵_walk_left_3.png",
+        "沙路侦察兵_walk_left_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_right": {
+      "frames": [
+        "沙路侦察兵_walk_right_0.png",
+        "沙路侦察兵_walk_right_1.png",
+        "沙路侦察兵_walk_right_2.png",
+        "沙路侦察兵_walk_right_3.png",
+        "沙路侦察兵_walk_right_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "sit": {
+      "frames": [
+        "沙路侦察兵_sit_0.png",
+        "沙路侦察兵_sit_1.png",
+        "沙路侦察兵_sit_2.png",
+        "沙路侦察兵_sit_3.png",
+        "沙路侦察兵_sit_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "special": {
+      "frames": [
+        "沙路侦察兵_special_0.png",
+        "沙路侦察兵_special_1.png",
+        "沙路侦察兵_special_2.png",
+        "沙路侦察兵_special_3.png",
+        "沙路侦察兵_special_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    },
+    "stand": {
+      "frames": [
+        "沙路侦察兵_stand_0.png",
+        "沙路侦察兵_stand_1.png",
+        "沙路侦察兵_stand_2.png",
+        "沙路侦察兵_stand_3.png",
+        "沙路侦察兵_stand_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    },
+    "talk": {
+      "frames": [
+        "沙路侦察兵_talk_0.png",
+        "沙路侦察兵_talk_1.png",
+        "沙路侦察兵_talk_2.png",
+        "沙路侦察兵_talk_3.png",
+        "沙路侦察兵_talk_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    }
+  }
+}

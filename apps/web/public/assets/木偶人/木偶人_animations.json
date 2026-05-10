@@ -1,0 +1,104 @@
+{
+  "npc_key": "木偶人",
+  "animations": {
+    "idle": {
+      "frames": [
+        "木偶人_idle_0.png",
+        "木偶人_idle_1.png",
+        "木偶人_idle_2.png",
+        "木偶人_idle_3.png",
+        "木偶人_idle_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_front": {
+      "frames": [
+        "木偶人_walk_front_0.png",
+        "木偶人_walk_front_1.png",
+        "木偶人_walk_front_2.png",
+        "木偶人_walk_front_3.png",
+        "木偶人_walk_front_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_back": {
+      "frames": [
+        "木偶人_walk_back_0.png",
+        "木偶人_walk_back_1.png",
+        "木偶人_walk_back_2.png",
+        "木偶人_walk_back_3.png",
+        "木偶人_walk_back_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_left": {
+      "frames": [
+        "木偶人_walk_left_0.png",
+        "木偶人_walk_left_1.png",
+        "木偶人_walk_left_2.png",
+        "木偶人_walk_left_3.png",
+        "木偶人_walk_left_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "walk_right": {
+      "frames": [
+        "木偶人_walk_right_0.png",
+        "木偶人_walk_right_1.png",
+        "木偶人_walk_right_2.png",
+        "木偶人_walk_right_3.png",
+        "木偶人_walk_right_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "sit": {
+      "frames": [
+        "木偶人_sit_0.png",
+        "木偶人_sit_1.png",
+        "木偶人_sit_2.png",
+        "木偶人_sit_3.png",
+        "木偶人_sit_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": -1
+    },
+    "stand": {
+      "frames": [
+        "木偶人_stand_0.png",
+        "木偶人_stand_1.png",
+        "木偶人_stand_2.png",
+        "木偶人_stand_3.png",
+        "木偶人_stand_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    },
+    "talk": {
+      "frames": [
+        "木偶人_talk_0.png",
+        "木偶人_talk_1.png",
+        "木偶人_talk_2.png",
+        "木偶人_talk_3.png",
+        "木偶人_talk_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    },
+    "special": {
+      "frames": [
+        "木偶人_special_0.png",
+        "木偶人_special_1.png",
+        "木偶人_special_2.png",
+        "木偶人_special_3.png",
+        "木偶人_special_4.png"
+      ],
+      "frameRate": 12,
+      "repeat": 0
+    }
+  }
+}

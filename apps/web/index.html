@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PixelTavern</title>
+  <link rel="icon" type="image/png" href="/assets/ui/favicon.png" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+  <style>
+    /* 首次运行免责声明弹窗 */
+    #disclaimer-overlay {
+      position: fixed; inset: 0; z-index: 99999;
+      background: rgba(0,0,0,0.85);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Microsoft YaHei','PingFang SC',sans-serif;
+    }
+    #disclaimer-overlay.hidden { display: none; }
+    #disclaimer-box {
+      max-width: 560px; width: 90%; max-height: 80vh; overflow-y: auto;
+      background: linear-gradient(180deg, #1a1220, #0d0a14);
+      border: 1px solid #c9a96e; border-radius: 8px;
+      padding: 28px 24px 20px;
+      color: #e0d8c8; font-size: 13px; line-height: 1.8;
+    }
+    #disclaimer-box h2 {
+      color: #c9a96e; text-align: center; font-size: 18px;
+      margin-bottom: 16px;
+    }
+    #disclaimer-box .disclaimer-text {
+      background: rgba(255,255,255,0.03);
+      border-left: 3px solid #c9a96e;
+      padding: 12px 16px; margin-bottom: 16px;
+      font-size: 12px; line-height: 1.9; color: #b0a090;
+    }
+    #disclaimer-box .btn-agree {
+      display: block; width: 100%; padding: 10px 0;
+      border: 1px solid #c9a96e; border-radius: 4px;
+      background: #c9a96e; color: #1a1a2e;
+      font-size: 15px; font-weight: bold; cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    #disclaimer-box .btn-agree:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+  <!-- 首次运行免责声明 -->
+  <div id="disclaimer-overlay" class="hidden">
+    <div id="disclaimer-box">
+      <h2>⚔  PixelTavern 像素酒馆  ⚔</h2>
+      <div class="disclaimer-text">
+        <p>本项目完全开源免费，用于探索 AI 驱动的 NPC 互动模拟，内容仅供交流学习。</p>
+        <br/>
+        <p>内容完全由使用者的提示词与 AI 模型生成，与本项目开发者无任何关系。</p>
+        <p>本项目完全本地部署与运行，项目制作者对输出内容毫不知情。</p>
+        <p>使用者请主动遵守当地法律，抵制任何低俗、违规、盗版的信息；本项目鼓励分享积极、健康、向上的内容。</p>
+        <p>本项目提前内置安全审核机制，不要试图绕过 AI 安全审查机制，因本项目产生内容的任何责任均由使用者自行承担，与本项目开发者无任何直接或间接的关系。</p>
+        <p>本项目制作者保留对本项目造成不良影响、侵犯本项目制作者正当权益的主体的追责权力。</p>
+        <p>本项目素材均由 AI 制作，如有侵权，请直接联系作者删除。</p>
+        <br/>
+        <p style="text-align:center;color:#c9a96e;font-weight:bold;">使用本项目则默认同意以上条款。</p>
+      </div>
+      <button class="btn-agree" id="disclaimer-agree">我已阅读并同意</button>
+    </div>
+  </div>
+
+  <div id="game-container"></div>
+  <div id="world-status-board" aria-label="世界状态">
+    <span id="world-round" class="world-stat" data-label="轮次" title="当前轮次">R0</span>
+    <span id="world-calendar" class="world-stat" data-label="日期">1500年01月01日</span>
+    <span id="world-time" class="world-stat" data-label="运行时间">--:--</span>
+    <span id="world-topic" class="world-stat topic" data-label="主题">酒馆静候开场</span>
+  </div>
+  <div id="guidance-marquee" aria-live="polite"><span></span></div>
+
+  <!-- 世界控制栏 -->
+  <div id="world-bar">
+    <div id="world-bar-row1">
+      <img id="app-logo" src="/assets/ui/pixel-tavern-logo.png" alt="PixelTavern" title="PixelTavern" />
+      <label>运行轮数</label>
+      <input id="world-duration" type="number" value="6" min="1" step="1" title="每轮4小时，6轮=1天" />
+      <button id="world-start" class="icon-label-btn"><img class="ui-icon" src="/assets/ui/icons/play.png" alt="" />开始</button>
+      <button id="world-pause" class="icon-label-btn"><img class="ui-icon" src="/assets/ui/icons/pause.png" alt="" />暂停</button>
+      <button id="world-stop" class="icon-label-btn"><img class="ui-icon" src="/assets/ui/icons/stop.png" alt="" />停止</button>
+      <button id="world-latest" class="icon-label-btn" title="回到最新轮次（继续发展）" style="display:none;padding:4px 8px;font-size:10px;border:1px solid #5a8;border-radius:3px;background:transparent;color:#5a8;cursor:pointer;"><img class="ui-icon" src="/assets/ui/icons/latest.png" alt="" />跳至最新</button>
+      <div id="user-input-row" style="display:flex;gap:6px;align-items:center;margin-left:8px;">
+        <input id="user-event-input" type="text" placeholder="开始前/运行中添加引导…"
+          style="width:180px;padding:4px 8px;background:#0d0d1a;border:1px solid #3d3d5c;border-radius:3px;color:#e0d8c8;font-size:12px;" />
+        <button id="user-event-send" class="icon-label-btn" style="padding:4px 10px;font-size:11px;border:1px solid #6855a0;border-radius:3px;background:transparent;color:#8b7cc5;cursor:pointer;"><img class="ui-icon" src="/assets/ui/icons/send.png" alt="" />发送</button>
+      </div>
+    </div>
+    <div id="world-bar-row2">
+      <span id="llm-dot" style="width:6px;height:6px;border-radius:50%;background:#888;flex-shrink:0" title="LLM 连接状态"></span>
+      <span id="llm-request-status" class="llm-request-status" title="LLM 请求状态">就绪</span>
+    </div>
+  </div>
+
+
+  <!-- 右侧信息栏 — 全部功能统一为选项卡 -->
+  <div id="info-panel">
+    <div id="info-tabs">
+      <button class="tab-btn active" data-tab="world"><img class="ui-icon" src="/assets/ui/icons/world.png" alt="" /><span>世界</span></button>
+      <button class="tab-btn" data-tab="memory"><img class="ui-icon" src="/assets/ui/icons/memory.png" alt="" /><span>状态</span></button>
+      <button class="tab-btn" data-tab="scene-edit"><img class="ui-icon" src="/assets/ui/icons/collision.png" alt="" /><span>场景</span></button>
+      <button class="tab-btn" data-tab="llm-settings"><img class="ui-icon" src="/assets/ui/icons/settings.png" alt="" /><span>LLM</span></button>
+      <button class="tab-btn" data-tab="world-edit"><img class="ui-icon" src="/assets/ui/icons/prompt.png" alt="" /><span>风格</span></button>
+      <button class="tab-btn" data-tab="assets"><img class="ui-icon" src="/assets/ui/icons/assets.png" alt="" /><span>素材</span></button>
+      <button class="tab-btn" data-tab="settings"><img class="ui-icon" src="/assets/ui/icons/settings.png" alt="" /><span>设置</span></button>
+      <button class="tab-btn" data-tab="about"><img class="ui-icon" src="/assets/ui/icons/prompt.png" alt="" /><span>关于</span></button>
+    </div>
+
+    <!-- 世界历史 -->
+    <div id="info-tab-world" class="info-tab-content active">
+      <div class="mem-empty">世界启动后，Tick 历史会出现在这里</div>
+    </div>
+
+    <!-- NPC 状态与角色记忆 -->
+    <div id="info-tab-memory" class="info-tab-content">
+      <div id="npc-status-list"></div>
+      <div id="memory-groups-list"><div class="mem-empty">世界启动后，角色记忆会出现在这里</div></div>
+    </div>
+
+    <!-- 场景编辑 -->
+    <div id="info-tab-scene-edit" class="info-tab-content">
+      <div class="settings-hint">切换到此选项卡后可直接在酒馆场景中拖动碰撞区和素材位置，调整元素叠加层级。保存后会写入后端并缓存至浏览器。</div>
+    </div>
+
+    <!-- LLM 设置 -->
+    <div id="info-tab-llm-settings" class="info-tab-content">
+      <h2>LLM 设置</h2>
+      <label>API 地址 (Base URL)</label>
+      <input id="cfg-base-url" type="text" placeholder="https://api.deepseek.com" />
+      <label>API Key</label>
+      <input id="cfg-api-key" type="password" placeholder="sk-your-key" />
+      <label>模型名称 (Model)</label>
+      <input id="cfg-model" type="text" placeholder="deepseek-v4-flash" />
+      <label class="setting-check">
+        <input id="cfg-daily-news-guidance" type="checkbox" />
+        <span>每天首次运行 LLM 前注入今日要闻</span>
+      </label>
+      <div id="daily-news-guidance-status" class="settings-info-box">今日新闻引导状态加载中…</div>
+      <div class="btn-row">
+        <button id="daily-news-trigger" class="icon-label-btn"><img class="ui-icon" src="/assets/ui/icons/prompt.png" alt="" />手动触发新闻引导</button>
+      </div>
+      <div class="btn-row">
+        <button id="cfg-test" class="icon-label-btn"><img class="ui-icon" src="/assets/ui/icons/test.png" alt="" />测试连接</button>
+        <button id="cfg-save" class="primary icon-label-btn"><img class="ui-icon" src="/assets/ui/icons/save.png" alt="" />保存</button>
+      </div>
+      <div id="settings-status"></div>
+    </div>
+
+    <!-- 设置（开发中） -->
+    <div id="info-tab-settings" class="info-tab-content">
+      <div style="text-align:center;padding:40px 0;color:#666;font-size:14px">⚙ 开发中，敬请期待</div>
+    </div>
+
+    <!-- 关于 -->
+    <div id="info-tab-about" class="info-tab-content">
+      <div style="color:#e0d8c8;font-size:12px;line-height:1.8">
+        <h2 style="color:#c9a96e">PixelTavern 像素酒馆</h2>
+        <p>像素风黑暗奇幻酒馆 AI 模拟前端。用 LLM 驱动 NPC 在酒馆中自主交互——对话、移动、坐下、离店、打盹。</p>
+        <p>Phaser 3 + TypeScript + FastAPI + SQLite | OpenAI-compatible API</p>
+        <hr style="border-color:#2a2a3a;margin:12px 0" />
+        <p><strong style="color:#c9a96e">愿景</strong>：让 AI 角色互动像走进一间有血有肉的奇幻 RPG 酒馆。</p>
+        <p><strong style="color:#c9a96e">核心循环</strong>：配置 LLM → 启动世界轮次 → NPC 自主行动 → 用户干预 → 历史回放/导出/分享</p>
+        <hr style="border-color:#2a2a3a;margin:12px 0" />
+        <p><strong style="color:#c9a96e">功能</strong>：像素酒馆地图 · NPC A* 寻路 · 坐姿/行走/说话动画 · 角色 CRUD · 世界轮次运行 · 历史回放 · 状态导出/导入 · 用户干预 · 长期记忆 · 5 种风格预设 · 自定义风格</p>
+        <hr style="border-color:#2a2a3a;margin:12px 0" />
+        <p><strong style="color:#c9a96e">暂缓</strong>：PNG 角色卡导入 · PWA · Tauri 桌面端 · 角色市场 · 插件系统</p>
+        <p style="color:#666;margin-top:16px">GitHub: <a href="https://github.com/songzijiang/PixelTavern" target="_blank" style="color:#8b7cc5">songzijiang/PixelTavern</a></p>
+        <hr style="border-color:#2a2a3a;margin:12px 0" />
+        <label class="setting-check" style="display:flex;align-items:center;gap:8px;cursor:pointer;color:#888;font-size:12px">
+          <input id="experimental-toggle" type="checkbox" />
+          <span>实验功能开关</span>
+        </label>
+        <div id="experimental-notice" style="display:none;color:#e8a040;font-size:10px;margin-top:4px">实验功能仍在开发中，可能不稳定。</div>
+        <div id="experimental-safety-section" style="display:none;margin-top:12px">
+          <label style="color:#888;font-size:11px">安全审核提示词（可编辑）</label>
+          <textarea id="experimental-safety-prompt" style="width:100%;min-height:120px;padding:6px 8px;background:#0d0d1a;border:1px solid #3d3d5c;border-radius:4px;color:#c0b898;font-size:11px;font-family:inherit;resize:vertical"></textarea>
+          <button id="experimental-safety-save" style="margin-top:6px;padding:4px 12px;border:1px solid #5a8;border-radius:3px;background:transparent;color:#8dc;cursor:pointer;font-size:11px">保存安全提示词</button>
+          <span id="experimental-safety-status" style="margin-left:8px;font-size:10px;color:#666"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 世界编辑：Prompt + 角色 -->
+    <div id="info-tab-world-edit" class="info-tab-content">
+      <div id="world-edit-section-prompt">
+        <h2>World Prompt 编辑</h2>
+        <div class="btn-row" style="margin-bottom:8px;">
+          <button id="prompt-export" class="icon-label-btn" title="导出世界编辑全部数据（含自定义素材）"><img class="ui-icon" src="/assets/ui/icons/export.png" alt="" />导出</button>
+          <button id="prompt-import" class="icon-label-btn" title="导入世界编辑数据 zip（含素材）"><img class="ui-icon" src="/assets/ui/icons/import.png" alt="" />导入</button>
+          <input id="prompt-import-file" type="file" accept=".zip" style="display:none;" />
+        </div>
+        <div class="prompt-hint">安全审核、地图、动作规则与输出格式由后台固定拼接。<br>这里主要编辑故事背景、故事主题、日期和 User Prompt 模板；角色背景、关系请在下方角色编辑区维护。</div>
+        <label>默认风格</label>
+        <select id="prompt-preset"></select>
+        <label>游戏初始日期</label>
+        <input id="prompt-calendar-start" type="date" value="1500-01-01" />
+        <label>故事背景</label>
+        <textarea id="prompt-story-background" placeholder="输入酒馆世界背景..."></textarea>
+        <label>故事主题与风格</label>
+        <textarea id="prompt-story-theme" placeholder="输入故事主题、氛围和互动方向..."></textarea>
+        <label>User Prompt 模板</label>
+        <textarea id="prompt-usr-prompt" placeholder="输入 User Prompt..."></textarea>
+        <div class="prompt-hint">User Prompt 占位符：{tick} {states} {available} {extra}</div>
+        <div class="btn-row">
+          <button id="prompt-new-preset" class="icon-label-btn" title="新建空白自定义风格"><img class="ui-icon" src="/assets/ui/icons/add.png" alt="" />新增风格</button>
+          <button id="prompt-save" class="primary icon-label-btn"><img class="ui-icon" src="/assets/ui/icons/save.png" alt="" />保存</button>
+          <button id="prompt-rename-preset" style="display:none;padding:4px 10px;border:1px solid #b0a090;border-radius:3px;background:transparent;color:#b0a090;cursor:pointer;font-size:12px;" title="重命名当前自定义风格">重命名</button>
+          <button id="prompt-delete-preset" class="danger icon-label-btn" style="display:none;" title="删除当前自定义风格"><img class="ui-icon" src="/assets/ui/icons/trash.png" alt="" />删除风格</button>
+        </div>
+        <div id="prompt-status"></div>
+      </div>
+      <hr class="section-divider" />
+      <div id="world-edit-section-chars">
+        <div id="chars-list"></div>
+      </div>
+      <hr class="section-divider" />
+      <div id="world-edit-section-preview">
+        <label>System Prompt 预览（只读）</label>
+        <textarea id="prompt-sys-prompt" readonly placeholder="后台拼接后的 System Prompt 预览..."></textarea>
+      </div>
+    </div>
+
+    <!-- NPC 素材检视与导入 -->
+    <div id="info-tab-assets" class="info-tab-content"></div>
+  </div>
+  <button id="info-toggle" title="折叠信息栏">&#9664;</button>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
