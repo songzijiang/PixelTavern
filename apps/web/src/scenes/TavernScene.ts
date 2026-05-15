@@ -402,8 +402,32 @@ export class TavernScene extends Phaser.Scene {
     this.spawnNPCs();
     if (snapshot.length > 0) {
       this.positionNPCsFromSnapshot(snapshot);
+      // 如果所有核心 NPC 在快照定位后仍不可见（风格切换导致 key 不匹配），
+      // 直接拉到初始位置而非卡在门外隐身
+      // 修复：之前 !n.isAway 排除了所有门外状态 NPC，导致 every 永远为 false
+      const allStuckOutside = this.npcs.every(
+        n => n.isAway || n.visible === false,
+      );
+      if (allStuckOutside && this.npcs.length > 0) {
+        this.npcs.forEach((n) => {
+          n.returnFromDoor('style_switch');
+          const cfg = this.activeNpcConfigs.find(c => c.key === n.key);
+          if (cfg) {
+            (n as any).x = cfg.startX;
+            (n as any).y = cfg.startY;
+          }
+        });
+      }
     } else {
-      this.positionBartender();
+      this.npcs.forEach((n) => {
+        const cfg = this.activeNpcConfigs.find(c => c.key === n.key);
+        if (cfg) {
+          n.returnFromDoor('style_switch');
+          (n as any).x = cfg.startX;
+          (n as any).y = cfg.startY;
+          n.showDirection('front');
+        }
+      });
     }
     this.ensureNpcAnimationsPlaying();
   }

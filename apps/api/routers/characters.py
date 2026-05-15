@@ -6,6 +6,7 @@ import logging
 import os
 import re
 import shutil
+import sys
 import zipfile
 from datetime import datetime, timezone
 from io import BytesIO
@@ -32,7 +33,20 @@ router = APIRouter(prefix="/api/characters", tags=["characters"])
 
 APPS_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PROJECT_ROOT = os.path.dirname(APPS_DIR)
-WEB_ASSETS_DIR = os.path.join(APPS_DIR, "web", "public", "assets")
+
+def _web_assets_dir() -> str:
+    """返回素材目录，兼容开发模式和 PyInstaller 打包模式。"""
+    if getattr(sys, "frozen", False):
+        for candidate in (
+            os.path.join(sys._MEIPASS, "web", "dist", "assets"),
+            os.path.join(os.path.dirname(sys._MEIPASS), "web", "dist", "assets"),
+            os.path.join(sys._MEIPASS, "assets"),
+        ):
+            if os.path.isdir(candidate):
+                return candidate
+    return os.path.join(APPS_DIR, "web", "public", "assets")
+
+WEB_ASSETS_DIR = _web_assets_dir()
 MANIFEST_FILE = os.path.join(WEB_ASSETS_DIR, "manifest.json")
 ASSET_TEMPLATE_DIR = os.path.join(PROJECT_ROOT, "assets", "template")
 ASSET_TEMPLATE_ZIP = os.path.join(DATA_DIR, "npc_asset_template.zip")

@@ -1140,7 +1140,8 @@ def _prompt_config_from_data(data: dict | None = None) -> dict:
     preset_char_overrides = preset.get("character_overrides", {}) if isinstance(preset.get("character_overrides"), dict) else {}
     user_char_overrides = raw.get("character_overrides") if isinstance(raw.get("character_overrides"), dict) else {}
     character_overrides = {**preset_char_overrides, **user_char_overrides}
-    characters = raw.get("characters") if isinstance(raw.get("characters"), list) else None
+    raw_chars = raw.get("characters")
+    characters = raw_chars if isinstance(raw_chars, list) and raw_chars else None
     if characters is None:
         characters = characters_for_preset(preset_key)
 
@@ -1206,12 +1207,14 @@ def build_system_prompt_from_data(data: dict | None = None) -> str:
     }
     character_block = CHARACTER_BLOCK_TEMPLATE.format(**format_vars)
 
-    # 关系网：全部来自角色编辑器的人物关系字段；无自定义时使用内置默认关系网
+    # 关系网：全部来自角色编辑器的人物关系字段；无自定义时仅显示当前核心角色的关系
     character_relationships = _relationship_prompt_from_characters(active_characters)
     if character_relationships:
         relationship_block = "## 关系网\n\n" + character_relationships
+    elif core_characters:
+        relationship_block = "## 关系网\n\n当前风格未设置角色关系网。"
     else:
-        relationship_block = RELATIONSHIP_PROMPT
+        relationship_block = ""
 
     # 安全审核：优先读取用户自定义配置，否则使用内置默认
     safety_prompt = SAFETY_AUDIT_PROMPT

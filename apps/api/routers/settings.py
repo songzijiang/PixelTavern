@@ -339,18 +339,23 @@ async def get_default_world_prompt():
 
 @router.post("/world-prompt/preview")
 async def preview_world_prompt(settings: WorldPromptSettings):
-    """根据当前编辑内容实时预览 System Prompt（不保存）。"""
+    """根据当前编辑内容实时预览 System Prompt（不保存）。
+    未提供的字段从当前配置读取，确保预览与实际 run 时一致。"""
+    base = _load_prompt()
+    preset_key = settings.preset_key or base.get("preset_key", DEFAULT_PROMPT_PRESET_KEY)
     data = {
-        "preset_key": settings.preset_key,
-        "story_background": settings.story_background,
-        "story_theme": settings.story_theme,
-        "user_prompt": settings.user_prompt,
-        "character_overrides": settings.character_overrides,
-        "characters": settings.characters if settings.characters is not None else _prompt_config_from_data({"preset_key": settings.preset_key}).get("characters", []),
-        "relationship_prompt": settings.relationship_prompt,
+        "preset_key": preset_key,
+        "story_background": settings.story_background if settings.story_background is not None else base.get("story_background"),
+        "story_theme": settings.story_theme if settings.story_theme is not None else base.get("story_theme"),
+        "user_prompt": settings.user_prompt if settings.user_prompt is not None else base.get("user_prompt"),
+        "character_overrides": settings.character_overrides if settings.character_overrides is not None else base.get("character_overrides"),
+        "characters": settings.characters if settings.characters is not None else base.get("characters"),
+        "relationship_prompt": settings.relationship_prompt if settings.relationship_prompt is not None else base.get("relationship_prompt"),
     }
     return {
         "system_prompt": build_system_prompt_from_data(data),
+        "preset_key": preset_key,
+        "characters": data["characters"],
     }
 
 
